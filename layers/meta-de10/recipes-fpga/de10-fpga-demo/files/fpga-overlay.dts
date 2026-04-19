@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: GPL-2.0
+// DE10-Nano minimal FPGA configuration overlay.
+// Targets the base-fpga-region defined in the Cyclone V SoCFPGA device tree.
+/dts-v1/;
+/plugin/;
+
+/ {
+    fragment@0 {
+        target-path = "/soc/base-fpga-region";
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <1>;
+
+            firmware-name = "fpga.rbf";
+        };
+    };
+};
