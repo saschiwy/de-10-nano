@@ -1,0 +1,23 @@
+From 3d02d782e30588789746e20cd2503571692d4fc9 Mon Sep 17 00:00:00 2001
+From: Sascha Schiwy <sascha.schiwy@gmail.com>
+Date: Fri, 17 Apr 2026 12:20:15 +0000
+Subject: [PATCH] Removed hw_watchdog_init prototype if not defined
+
+---
+ drivers/ddr/altera/sdram_soc32.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/ddr/altera/sdram_soc32.c b/drivers/ddr/altera/sdram_soc32.c
+index 24804d6670f..741a78d40a5 100644
+--- a/drivers/ddr/altera/sdram_soc32.c
++++ b/drivers/ddr/altera/sdram_soc32.c
+@@ -52,7 +52,9 @@ void sdram_init_ecc_bits(void)
+ 			 * so that the defined timeout is valid.
+ 			 */
+ 			debug("%s: %d\n", __func__, __LINE__);
++			#ifdef CONFIG_HW_WATCHDOG
+ 			hw_watchdog_init();
++			#endif
+ 		} else {
+ 			/*
+ 			 * If the HW watchdog is NOT enabled,
